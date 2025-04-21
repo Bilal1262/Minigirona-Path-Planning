@@ -98,50 +98,50 @@ class PathFollower:
         heading = math.atan2(dy, dx)
         angle_error = wrap_angle(heading - self.current_pose[3])
         
-        # # First correct orientation, then move forward
-        # if abs(angle_error) > 0.3:  # Orientation threshold in radians
-        #     # Only rotate to face the waypoint
-        #     self.__send_command__(0, 0, 0, 0, 0, 0.2 * np.sign(angle_error))
-        # else:
-        #     # Move forward while maintaining orientation
-        #     # Compute distance in x-y plane
-        #     distance_xy = np.linalg.norm(waypoint_pos[:2] - self.current_pose[:2])
+        # First correct orientation, then move forward
+        if abs(angle_error) > 0.3:  # Orientation threshold in radians
+            # Only rotate to face the waypoint
+            self.__send_command__(0, 0, 0, 0, 0, 0.2 * np.sign(angle_error))
+        else:
+            # Move forward while maintaining orientation
+            # Compute distance in x-y plane
+            distance_xy = np.linalg.norm(waypoint_pos[:2] - self.current_pose[:2])
             
-        #     # Compute velocities (simple proportional control)
-        #     v_forward = min(self.Kv * distance_xy, self.v_max)
-        #     w_z = self.Kw * angle_error
+            # Compute velocities (simple proportional control)
+            v_forward = min(self.Kv * distance_xy, self.v_max)
+            w_z = self.Kw * angle_error
             
-        #     # Also control depth if needed
-        #     depth_error = waypoint_pos[2] - self.current_pose[2]
-        #     v_z = min(self.Kv * abs(depth_error), self.v_max) * np.sign(depth_error)
+            # Also control depth if needed
+            depth_error = waypoint_pos[2] - self.current_pose[2]
+            v_z = min(self.Kv * abs(depth_error), self.v_max) * np.sign(depth_error)
 
-        #     # Send command (only using x, z linear and z angular for underwater vehicle)
-        #     self.__send_command__(v_forward, 0, v_z, 0, 0, w_z)
+            # Send command (only using x, z linear and z angular for underwater vehicle)
+            self.__send_command__(v_forward, 0, v_z, 0, 0, w_z)
 
-        target_pose = {
-            'x': waypoint_pos[0],
-            'y': waypoint_pos[1],
-            'z': waypoint_pos[2],
-            'theta': self.current_pose[3] # Maintain heading toward waypoint
-        }
+        # target_pose = {
+        #     'x': waypoint_pos[0],
+        #     'y': waypoint_pos[1],
+        #     'z': waypoint_pos[2],
+        #     'theta': self.current_pose[3] # Maintain heading toward waypoint
+        # }
         
-        current_pose_dict = {
-            'x': self.current_pose[0],
-            'y': self.current_pose[1],
-            'z': self.current_pose[2],
-            'theta': self.current_pose[3]
-        }
+        # current_pose_dict = {
+        #     'x': self.current_pose[0],
+        #     'y': self.current_pose[1],
+        #     'z': self.current_pose[2],
+        #     'theta': self.current_pose[3]
+        # }
         
-        # Compute velocities using PID controller
-        velocities = self.pid_controller.compute_velocities(current_pose_dict, target_pose)
+        # # Compute velocities using PID controller
+        # velocities = self.pid_controller.compute_velocities(current_pose_dict, target_pose)
         
-        vx = velocities['linear']['x']
-        vy = velocities['linear']['y']
-        vz= velocities['linear']['z']
+        # vx = velocities['linear']['x']
+        # vy = velocities['linear']['y']
+        # vz= velocities['linear']['z']
 
-        wz= velocities['angular']['z']
-        # Send command (only using x, z linear and z angular for underwater vehicle)
-        self.__send_command__(vx, vy, vz, 0, 0, wz)
+        # wz= velocities['angular']['z']
+        # # Send command (only using x, z linear and z angular for underwater vehicle)
+        # self.__send_command__(vx, vy, vz, 0, 0, wz)
     
     def __send_command__(self, vx, vy, vz, wx, wy, wz):
         """

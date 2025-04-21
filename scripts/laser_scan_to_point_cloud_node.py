@@ -10,7 +10,7 @@ rospy.init_node("laserscan_to_pointcloud")
 
 lp = lg.LaserProjection()
 
-pc_pub = rospy.Publisher("/cloud_in", PointCloud2, queue_size=1)
+pc_pub = rospy.Publisher("/minigirona/navigator/cloud_in", PointCloud2, queue_size=1)
 
 def scan_cb(msg):
     pc2_msg = lp.projectLaser(msg)
@@ -18,5 +18,5 @@ def scan_cb(msg):
 
 
 rospy.Subscriber("/scan", LaserScan, scan_cb, queue_size=1)
-rospy.Subscriber("/kobuki/sensors/rplidar", LaserScan, scan_cb, queue_size=1)
+rospy.Subscriber("/minigirona/navigator/multibeam", LaserScan, scan_cb, queue_size=1)
 rospy.spin()
