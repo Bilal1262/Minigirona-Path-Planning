@@ -11,7 +11,7 @@
     <!-- Simulation parameters -->
     <arg name="simulation_data" value="$(find minigirona_stonefish)/data"/>
     <arg name="scenario_description"
-        value="/root/minigirona_ws/src/rami_competition/scenario/rami_env.scn"/>
+        value="$(find rami_competition)/scenario/rami_env.scn"/>
     <arg name="simulation_rate" value="100.0"/>
     <arg name="graphics_resolution" value="1440 900"/>
     <arg name="graphics_quality" value="low"/>
