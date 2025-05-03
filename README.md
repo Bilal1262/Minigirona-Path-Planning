@@ -1,6 +1,4 @@
-Here's a well-structured `README.md` for your GitHub repository:
 
-```markdown
 # MiniGirona Path Planning with OMPL and PID Controller
 
 This repository implements path planning for the MiniGirona AUV using OMPL (Open Motion Planning Library) and follows the planned path using a PID controller.
@@ -71,4 +69,4 @@ This repository implements path planning for the MiniGirona AUV using OMPL (Open
 │   ├── minigirona_path_planning_OMPL  # OMPL path planning implementation
 │   └── follow_path.py           # PID path following implementation
 └── README.md
-```
+
