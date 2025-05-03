@@ -10,8 +10,8 @@ This repository implements path planning for the MiniGirona AUV using OMPL (Open
 - Occupancy grid mapping with OctoMap
 
 ## Prerequisites
-- [StoneFish Simulator](https://stonefish.gitbook.io/stonefish-docs/) (AUV simulation environment)
-- ROS (tested with [your ROS version])
+- [StoneFish Simulator]([https://stonefish.gitbook.io/stonefish-docs/](https://stonefish-ros.readthedocs.io/en/latest/)) (AUV simulation environment)
+- ROS (tested with [ROS 1 Noetic])
 - OMPL
 
 ## Installation
