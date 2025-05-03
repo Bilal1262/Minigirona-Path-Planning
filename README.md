@@ -72,25 +72,3 @@ This repository implements path planning for the MiniGirona AUV using OMPL (Open
 │   └── follow_path.py           # PID path following implementation
 └── README.md
 ```
-
-## Troubleshooting
-
-- **Robot not following path**: Ensure thrusters are enabled (see Usage section)
-- **Mapping issues**: Verify OctoMap server is properly configured in your launch file
-- **Topic errors**: Check that all topics match your simulator configuration
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-[Specify your license here, e.g., MIT]
-```
-
-You should:
-1. Replace `[your ROS version]` with the actual ROS version you're using
-2. Add the actual rami_competition repository URL if it's public
-3. Add your chosen license
-4. Consider adding screenshots or a demo video if available
-5. Add any additional dependencies your project might have
-
-The README follows standard GitHub formatting and includes all the essential sections for a robotics project. It's clear, concise, and provides all necessary information to get started with your project.
